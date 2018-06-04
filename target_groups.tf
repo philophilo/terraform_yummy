@@ -21,7 +21,7 @@ resource "aws_alb_target_group" "frontend_target_group" {
     protocol = "HTTP"
     vpc_id = "${aws_vpc.demo_vpc_terraform.id}"
     health_check {
-        health_threshold = 5
+        healthy_threshold = 5
         unhealthy_threshold = 2
         timeout = 5
     }
