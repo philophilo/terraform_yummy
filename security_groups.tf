@@ -120,7 +120,7 @@ resource "aws_security_group" "demo_frontend_alb_sg" {
     tags {
         Name = "demo_backend_sg"
     }
-    description = "Connections for the frontend - react a[["
+    description = "Connections for the frontend - react app"
     vpc_id = "${aws_vpc.demo_vpc_terraform.id}"
     ingress {
         from_port   = "80"
