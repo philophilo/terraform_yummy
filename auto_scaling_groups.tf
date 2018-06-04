@@ -19,10 +19,3 @@ resource "aws_autoscaling_attachment" "frontend_auto_scale_attach" {
     alb_target_group_arn = "${aws_alb_target_group.frontend_target_group.arn}"
     autoscaling_group_name = "${aws_autoscaling_group.demo_auto_scale.id}"
 }
-
-# instance attachment
-resource "aws_alb_target_group_attachment" "frontend_target_attach" {
-    target_group_arn = "${aws_alb_target_group.frontend_target_group.arn}"
-    target_id = "${aws_instance.frontend_ami.id}"  
-    port = 8080
-}
