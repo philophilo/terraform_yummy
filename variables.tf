@@ -10,6 +10,10 @@ variable "nat_ami" {
     default = "ami-0cae74fb86af18456"
 }
 
+variable "database_ami" {
+    default = "ami-052866c2d219d00b2"
+}
+
 variable "vpc_fullcidr" {
     default = "10.0.0.0/16"
     description = "the vpc cidr"
