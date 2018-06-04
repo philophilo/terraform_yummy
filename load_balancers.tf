@@ -20,7 +20,7 @@ resource "aws_alb_listener" "internal_alb_listener" {
 }
 
 resource "aws_alb" "demo_frontend_alb" {  
-    name = "demo=front-alb"  
+    name = "demo-front-alb"  
     subnets = ["${aws_subnet.demo_public_subnet_aza.id}", "${aws_subnet.demo_public_subnet_azb.id}"]
     security_groups = ["${aws_security_group.demo_frontend_alb_sg.id}"]
     internal = "false"  
