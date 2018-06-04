@@ -21,3 +21,15 @@ resource "aws_instance" "demo_nat_terraform" {
         Name = "demo_nat_terraform"
     }
 }
+
+resource "aws_instance" "demo_frontend_terraform" {
+    ami = "${var.frontend_ami}"
+    instance_type = "t2.micro"
+    associate_public_ip_address = "true"
+    subnet_id = "${aws_subnet.demo_public_subnet_aza.id}"
+    vpc_security_group_ids = ["${aws_security_group.demo_frontend_alb_sg.id}"]
+    key_name = "${var.key_name}"
+    tags {
+        Name = "demo_frontend_terraform"
+    }
+}
