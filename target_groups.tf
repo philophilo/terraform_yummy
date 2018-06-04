@@ -38,6 +38,6 @@ resource "aws_alb_target_group" "frontend_target_group" {
 # instance attachment
 resource "aws_alb_target_group_attachment" "frontend_target_attach" {
     target_group_arn = "${aws_alb_target_group.frontend_target_group.arn}"
-    target_id = "${aws_instance.demofrontend_terraform.id}"  
+    target_id = "${aws_instance.demo_frontend_terraform.id}"  
     port = 8080
 }
