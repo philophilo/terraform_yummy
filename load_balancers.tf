@@ -46,7 +46,7 @@ resource "aws_alb_listener_rule" "frontend_listener_rule" {
     priority = "1"   
     action {    
         type = "forward"    
-        target_group_arn = "${aws_alb_target_group.alb_target_group.id}"  
+        target_group_arn = "${aws_alb_target_group.frontend_target_group.id}"  
     }   
     condition {    
         field  = "path-pattern"    
