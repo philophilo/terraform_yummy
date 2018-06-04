@@ -19,6 +19,41 @@ resource "aws_alb_listener" "internal_alb_listener" {
     }
 }
 
+resource "aws_alb" "demo_frontend_alb" {  
+    name = "demo=front-alb"  
+    subnets = ["${aws_subnet.demo_public_subnet_aza.id}", "${aws_subnet.demo_public_subnet_azb.id}"]
+    security_groups = ["${aws_security_group.demo_frontend_alb_sg.id}"]
+    internal = "false"  
+    tags {    
+        Name = "demo_frontend_alb"    
+    }   
+}
+
+resource "aws_alb_listener" "frontend_alb_listener" {  
+  load_balancer_arn = "${aws_alb.demo_frontend_alb.arn}"  
+  port = "80"  
+  protocol = "HTTP"
+  
+  default_action {    
+        target_group_arn = "${aws_alb_target_group.frontend_target_group.arn}"
+        type = "forward"
+  }
+}
+
+resource "aws_alb_listener_rule" "frontend_listener_rule" {
+    depends_on   = ["aws_alb_target_group.frontend_target_group"]  
+    listener_arn = "${aws_alb_listener.frontend_alb_listener.arn}"  
+    priority = "1"   
+    action {    
+        type = "forward"    
+        target_group_arn = "${aws_alb_target_group.alb_target_group.id}"  
+    }   
+    condition {    
+        field  = "path-pattern"    
+        values = ["/"]  
+    }
+}
+
 #resource "aws_alb_listener" "alb-https" {
 #    load_balancer_arn = "${aws_alb.demo_internal_alb.arn}"
 #    port = "443"
