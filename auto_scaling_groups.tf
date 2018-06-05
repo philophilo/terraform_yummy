@@ -1,6 +1,6 @@
 resource "aws_autoscaling_group" "demo_auto_scale" {
     launch_configuration = "${aws_launch_configuration.demo_launch_conf.name}"
-    availability_zones = ["us-east-2a", "us-east-2b"]
+    vpc_zone_identifier = ["${aws_subnet.demo_public_subnet_aza.id}", "${aws_subnet.demo_public_subnet_azb.id}"]
     min_size = 1
     max_size = 2
     enabled_metrics = ["GroupMinSize", "GroupMaxSize", "GroupDesiredCapacity", "GroupInServiceInstances", "GroupTotalInstances"]
