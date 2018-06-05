@@ -116,9 +116,9 @@ resource "aws_security_group" "demo_internal_alb_sg" {
 }
 
 resource "aws_security_group" "demo_frontend_alb_sg" {
-    name = "demo_backend_sg"
+    name = "demo_frontend_sg"
     tags {
-        Name = "demo_backend_sg"
+        Name = "demo_frontend_sg"
     }
     description = "Connections for the frontend - react app"
     vpc_id = "${aws_vpc.demo_vpc_terraform.id}"
